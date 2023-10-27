@@ -1,30 +1,53 @@
-import { Form, FormItemProps } from 'antd'
+import { Form, FormItemProps, theme } from 'antd'
 import React, { useState } from 'react'
-
-import './style/index.css'
+import { css } from '@emotion/css'
 
 type Props = {
   children: React.ReactNode
 } & FormItemProps
 
-// `afl-floating-label ${isActive ? 'afl-floating-label--active' : ''}
+const { useToken } = theme
 
 export default function FloatingLabelFormItem(props: Props) {
   const [isActive, setIsActive] = useState(false)
 
+  const { token } = useToken()
+  console.log(token.colorBgBase)
+
+  const labelStyles = css`
+    position: relative;
+
+    & span {
+      position: absolute;
+      left: 0.7rem;
+      top: 50%;
+      z-index: 1;
+      pointer-events: none;
+      transform: translateY(-50%);
+      transition: all 0.2s;
+      color: ${token.colorTextLabel};
+    }
+
+    ${isActive
+      ? `& span {
+      top: 0;
+      left: 0.7rem;
+      font-size: 90%;
+      line-height: 90%;
+      padding: 0 0.5rem;
+      background: ${token.colorBgBase};
+    }`
+      : ''}
+  `
+
   return (
     <div
-      onBlur={() => setIsActive(false)}
+      className={labelStyles}
       onClick={() => setIsActive(true)}
-      className="afl-floating-wrapper"
+      onBlur={() => setIsActive(false)}
     >
-      <div className="afl-floating-label-box">
-        <fieldset className="afl-floating-label">
-          <legend>{props.label}</legend>
-        </fieldset>
-      </div>
-
       <Form.Item noStyle {...props}>
+        <span>{props.label}</span>
         {props.children}
       </Form.Item>
     </div>
