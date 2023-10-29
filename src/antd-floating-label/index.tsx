@@ -34,7 +34,7 @@ export default function FloatingLabelFormItem(props: Props) {
 
     & span {
       position: absolute;
-      left: 0.5rem;
+      left: 0.7rem;
       top: 50%;
       z-index: 1;
       pointer-events: none;
