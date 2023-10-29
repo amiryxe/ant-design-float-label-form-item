@@ -16,6 +16,10 @@ export default function Form1() {
       <FloatingLabelFormItem name="field3" label="Materialized antd Form Item (Input: large)">
         <Input size="large" />
       </FloatingLabelFormItem>
+
+      <FloatingLabelFormItem label="Form Layout" name="layout">
+        <Input.TextArea rows={4} />
+      </FloatingLabelFormItem>
     </Form>
   )
 }

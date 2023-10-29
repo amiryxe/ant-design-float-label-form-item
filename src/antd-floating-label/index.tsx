@@ -15,8 +15,6 @@ export default function FloatingLabelFormItem(props: Props) {
   // @ts-ignore: Unreachable code error
   const isSmallField: unknown = props?.children?.props?.size === 'small'
 
-  console.log(isSmallField)
-
   const [isActive, setIsActive] = useState(value ? true : false)
 
   useEffect(() => {
@@ -27,37 +25,53 @@ export default function FloatingLabelFormItem(props: Props) {
 
   const labelStyles = css`
     position: relative;
+    margin-bottom: ${token.marginLG}px;
+    font-size: ${token.fontSize}px;
 
     .ant-form-item-label {
       display: none;
     }
 
-    & span {
+    .antd-mfl__label {
       position: absolute;
-      left: 0.7rem;
-      top: 50%;
+      box-sizing: border-box;
+      left: 0;
+      top: 0;
       z-index: 1;
+      height: 100%;
+      max-height: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 0.8em;
+      background: transparent !important;
+
       pointer-events: none;
-      transform: translateY(-50%);
       transition: all 0.2s;
       color: ${token.colorTextLabel};
-      ${isSmallField ? 'font-size: 90%;' : ''}
+      ${isSmallField ? 'font-size: 0.8em;' : ''};
+    }
+
+    .antd-mfl__label span {
+      background: ${token.colorBgBase};
+      display: block;
+      padding: 0 0.5em;
+      line-height: 100%;
     }
 
     ${isActive
-      ? `& span {
-      top: ${isSmallField ? '.2rem' : '0'};;
-      left: 0.5rem;
-      font-size: ${isSmallField ? '70%' : '90%'};
-      line-height: 90%;
-      padding: 0 0.3rem;
+      ? `.antd-mfl__label {
+      top: -.5em;
+      left: 0;
+      height: 1em;
+      font-size: ${isSmallField ? '.8em' : '.9em'};
       background: ${token.colorBgBase};
     }`
       : ''}
 
     ${isActive
       ? `
-      &:focus-within span {
+      &:focus-within .antd-mfl__label {
         color: ${token.colorPrimary};
       }
       `
@@ -71,9 +85,11 @@ export default function FloatingLabelFormItem(props: Props) {
       onBlur={() => (value ? null : setIsActive(false))}
       onFocus={() => setIsActive(true)}
     >
-      <Form.Item {...props}>
+      <Form.Item {...props} noStyle>
         <div>
-          <span>{props.label}</span>
+          <div className="antd-mfl__label">
+            <span>{props.label}</span>
+          </div>
           {props.children}
         </div>
       </Form.Item>
