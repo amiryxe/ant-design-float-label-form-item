@@ -9,17 +9,17 @@ export default function Form1() {
         <Input />
       </Form.Item>
 
-      <FloatingLabelFormItem name="field1" label="Materialized antd Form Item (Input: small)">
+      <FloatingLabelFormItem name="field1" label="Material antd Form Item (Input: small)">
         <Input size="small" />
       </FloatingLabelFormItem>
 
-      <FloatingLabelFormItem name="field2" label="Materialized antd Form Item (Input: medium)">
+      <FloatingLabelFormItem name="field2" label="Material antd Form Item (Input: medium)">
         <Input />
       </FloatingLabelFormItem>
 
       <FloatingLabelFormItem
         name="field3"
-        label="Materialized antd Form Item (Input: large)"
+        label="Material antd Form Item (Input: large)"
         initialValue="With initialed value"
       >
         <Input size="large" />
