@@ -2,6 +2,8 @@ import { Form, FormItemProps, theme } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { css } from '@emotion/css'
 
+import './styles.css'
+
 type Props = {
   children: React.ReactNode
 } & FormItemProps
@@ -63,7 +65,6 @@ export default function FloatingLabelFormItem(props: Props) {
     ${isActive
       ? `.antd-mfl__label {
       top: -.5em;
-      left: 0;
       height: 1em;
       font-size: ${isSmallField ? '.8em' : '.9em'};
       background: ${token.colorBgBase};

@@ -6,7 +6,7 @@ import './antd-floating-label'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <ConfigProvider>
+    <ConfigProvider direction="rtl">
       <App />
     </ConfigProvider>
   </React.StrictMode>

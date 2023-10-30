@@ -1,0 +1,4 @@
+.ant-form-rtl .antd-mfl__label {
+  right: 0 !important;
+  left: unset !important;
+}
