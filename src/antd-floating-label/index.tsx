@@ -9,8 +9,9 @@ type Props = {
 const { useToken } = theme
 
 export default function FloatingLabelFormItem(props: Props) {
+  const { token } = useToken()
   const form = Form.useFormInstance()
-  const value = Form.useWatch([props.name], form)
+  const value = Form.useWatch(props.name, form)
 
   // @ts-ignore: Unreachable code error
   const isSmallField: unknown = props?.children?.props?.size === 'small'
@@ -18,10 +19,10 @@ export default function FloatingLabelFormItem(props: Props) {
   const [isActive, setIsActive] = useState(value ? true : false)
 
   useEffect(() => {
-    setIsActive(value ? true : false)
+    if (value) {
+      setIsActive(true)
+    }
   }, [value])
-
-  const { token } = useToken()
 
   const labelStyles = css`
     position: relative;
@@ -43,7 +44,7 @@ export default function FloatingLabelFormItem(props: Props) {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 0 0.8em;
+      padding: 0 0.6rem;
       background: transparent !important;
 
       pointer-events: none;
@@ -55,7 +56,7 @@ export default function FloatingLabelFormItem(props: Props) {
     .antd-mfl__label span {
       background: ${token.colorBgBase};
       display: block;
-      padding: 0 0.5em;
+      padding: 0 0.2rem;
       line-height: 100%;
     }
 
@@ -85,14 +86,11 @@ export default function FloatingLabelFormItem(props: Props) {
       onBlur={() => (value ? null : setIsActive(false))}
       onFocus={() => setIsActive(true)}
     >
-      <Form.Item {...props} noStyle>
-        <div>
-          <div className="antd-mfl__label">
-            <span>{props.label}</span>
-          </div>
-          {props.children}
-        </div>
-      </Form.Item>
+      <Form.Item {...props}>{props.children}</Form.Item>
+
+      <div className="antd-mfl__label">
+        <span>{props.label}</span>
+      </div>
     </div>
   )
 }
