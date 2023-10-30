@@ -89,6 +89,13 @@ export default function FloatingLabelFormItem(props: Props) {
     >
       <Form.Item {...props}>{props.children}</Form.Item>
 
+      {/* <fieldset
+        className="antd-mfl__label"
+        style={{ borderRadius: token.borderRadius, borderWidth: token.lineWidth, width: '100%' }}
+      >
+        <legend style={{ border: 'none', width: 'auto', padding: '0 .5rem' }}>{props.label}</legend>
+      </fieldset> */}
+
       <div className="antd-mfl__label">
         <span>{props.label}</span>
       </div>

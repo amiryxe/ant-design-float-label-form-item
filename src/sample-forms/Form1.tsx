@@ -50,6 +50,11 @@ export default function Form1() {
           <Select.Option value="opt3">Option 3</Select.Option>
         </Select>
       </FloatingLabelFormItem>
+
+      <fieldset>
+        <input type="text" />
+        <legend style={{ border: 'none', width: 'auto', padding: '0 .5rem' }}>test</legend>
+      </fieldset>
     </Form>
   )
 }
